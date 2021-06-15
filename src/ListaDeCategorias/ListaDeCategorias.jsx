@@ -12,12 +12,12 @@ class ListaDeCategorias extends Component {
   render() {
     return (
       <section>
-        <div className="list-group">
+        <div className="list-group p-2">
           {this.props.categorias.map((categoria, index) => {
             return (
               <button
                 type="button"
-                className="list-group-item list-group-item-action active"
+                className="list-group-item list-group-item-action"
                 key={index}
               >
                 {categoria}
@@ -26,7 +26,7 @@ class ListaDeCategorias extends Component {
           })}
         </div>
         <input
-          className="form-control"
+          className="form-control mb-1"
           type="text"
           placeholder="Digite o nome da categoria"
           onKeyUp={this._handleEventoInput.bind(this)}

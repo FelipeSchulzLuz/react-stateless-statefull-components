@@ -5,19 +5,21 @@ import FormularioCadastro from "./components/FormularioCadastro";
 import "./assets/App.css";
 import "./assets/index.css";
 import "./assets/bootstrap.css";
+import { listaCategoriasMock, listaNotasMock } from "./Database/Database"
+
 class App extends Component {
 
   constructor() {
     super();
 
     this.state = {
-      notas: [],
-      categorias: [],
+      notas: listaNotasMock,
+      categorias: listaCategoriasMock,
     }
   }
 
-  criarNota(titulo, texto) {
-    const novaNota = { titulo, texto };
+  criarNota(titulo, texto, categoria) {
+    const novaNota = { titulo, texto, categoria };
     const novoArrayNotas = [...this.state.notas, novaNota]
     const novoEstado = {
       notas: novoArrayNotas
@@ -43,7 +45,7 @@ class App extends Component {
   render() {
     return (
       <section className="conteudo">
-        <FormularioCadastro criarNota={this.criarNota.bind(this)} />
+        <FormularioCadastro categorias={this.state.categorias} criarNota={this.criarNota.bind(this)} />
         <main className="conteudo-principal">
           <ListaDeCategorias adicionarCategoria={this.adicionarCategoria.bind(this)} categorias={this.state.categorias} />
           <ListaDeNotas notas={this.state.notas} deletarNota={this.deletarNota.bind(this)} />
