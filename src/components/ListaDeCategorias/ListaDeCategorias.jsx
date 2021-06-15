@@ -1,19 +1,33 @@
 import React, { Component } from "react";
 import "./estilo.css";
 class ListaDeCategorias extends Component {
-  state = {};
+  constructor() {
+    super();
+    this.state = { categorias: [] };
+    this._novasCategorias = this._novasCategorias.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.categorias.inscrever(this._novasCategorias);
+  }
+
+  _novasCategorias(categorias) {
+    this.setState({ ...this.state, categorias });
+  }
+
   _handleEventoInput(e) {
-    if (e.key === "Enter") {
-        let valorCategoria = e.target.value;
-        this.props.adicionarCategoria(valorCategoria)
-        e.target.value = ""
+    if (e.key == "Enter") {
+      let valorCategoria = e.target.value;
+      this.props.adicionarCategoria(valorCategoria);
+      e.target.value = "";
     }
   }
+
   render() {
     return (
       <section>
         <div className="list-group p-2">
-          {this.props.categorias.map((categoria, index) => {
+          {this.state.categorias.map((categoria, index) => {
             return (
               <button
                 type="button"
