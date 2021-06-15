@@ -9,18 +9,26 @@ import ArrayNotas from "./Database/Notas"
 import Categorias from "./Database/Categorias"
 
 class App extends Component {
+
   constructor() {
     super();
     this.categorias = new Categorias();
     this.notas = new ArrayNotas();
   }
+
   render() {
     return (
       <section className="conteudo">
-        <FormularioCadastro categorias={this.categorias.categorias} adicionarNota={this.notas.adicionarNota} />
+        <FormularioCadastro
+          categorias={this.categorias}
+          adicionarNota={this.notas.adicionarNota.bind(this.notas)} />
         <main className="conteudo-principal">
-          <ListaDeCategorias adicionarCategoria={this.categorias.categorias.adicionarCategoria} categorias={this.categorias.categorias} />
-          <ListaDeNotas notas={this.notas.notas} deletarNota={this.notas.deletarNota} />
+          <ListaDeCategorias
+            adicionarCategoria={this.categorias.adicionarCategoria.bind(this.categorias)}
+            categorias={this.categorias} />
+          <ListaDeNotas
+            notas={this.notas}
+            deletarNota={this.notas.deletarNota.bind(this.notas)} />
         </main>
       </section>
     );
