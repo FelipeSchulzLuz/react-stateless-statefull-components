@@ -14,6 +14,10 @@ export default class ArrayNotas {
         this.notas.splice(index, 1);
         this.notificar();
     }
+    
+    desinscrever(func) {
+        this._inscritos.filter(f => f !== func)
+    }
 
     inscrever(func) {
         this._inscritos.push(func);
